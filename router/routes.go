@@ -1,18 +1,14 @@
 package router
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/madfelps/go-wallet/handler"
 )
 
 func initializeRoutes(router *gin.Engine) {
 	v1 := router.Group("/api/v1")
 	{
-		v1.GET("/wallet", func(ctx *gin.Context) {
-			ctx.JSON(http.StatusOK, gin.H{
-				"msg": "ok!",
-			})
-		})
+		v1.GET("/wallet", handler.ShowWalletHandler)
+		v1.POST("/wallet", handler.CreateWalletHandler)
 	}
 }
