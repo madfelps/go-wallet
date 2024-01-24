@@ -1,13 +1,27 @@
 package config
 
-import "errors"
+import (
+	"database/sql"
+	"fmt"
+)
 
 var (
+	db     *sql.DB
 	logger *Logger
 )
 
 func Init() error {
-	return errors.New("fake Error")
+	var err error
+	db, err = InitializePostgres()
+	if err != nil {
+		return fmt.Errorf("error initializing postgres: %v", err)
+	}
+
+	return nil
+}
+
+func GetPostgres() *sql.DB {
+	return db
 }
 
 func GetLogger(p string) *Logger {

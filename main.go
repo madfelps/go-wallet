@@ -18,6 +18,8 @@ func main() {
 	if err != nil {
 		logger.Errorf("config initialization error: %v", err)
 		return
+	} else {
+		logger.Info("config initialization all right!")
 	}
 
 	// Initialize Router
