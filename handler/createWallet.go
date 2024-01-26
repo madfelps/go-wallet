@@ -7,7 +7,12 @@ import (
 )
 
 func CreateWalletHandler(ctx *gin.Context) {
-	ctx.JSON(http.StatusOK, gin.H{
-		"msg": "ok!",
-	})
+	request := CreateWalletRequest{}
+
+	if err := request.Validate(); err != nil {
+		sendError(ctx, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	ctx.BindJSON(&request)
 }
