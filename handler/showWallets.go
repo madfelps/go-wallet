@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -21,7 +22,10 @@ func ShowWalletsHandler(ctx *gin.Context) {
 	defer rows.Close()
 
 	for rows.Next() {
-		rows.Scan(&wallet.Name, &wallet.Balance)
+		rows.Scan(&wallet.Id, &wallet.Name, &wallet.Balance)
+		fmt.Println(wallet.Name)
+		fmt.Println(wallet.Balance)
+		fmt.Println(wallet.Id)
 		if err != nil {
 			continue
 		}
