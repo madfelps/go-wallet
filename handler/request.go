@@ -7,16 +7,16 @@ func errParamIsRequired(name, typ string) error {
 }
 
 type CreateWalletRequest struct {
-	Name    string  `json:"name"`
-	Balance float64 `json:"balance"`
+	Name    string `json:"name"`
+	Balance string `json:"balance"`
 }
 
 func (r *CreateWalletRequest) Validate() error {
 	if r.Name == "" {
 		return errParamIsRequired("name", "string")
 	}
-	if r.Balance <= 0 {
-		return errParamIsRequired("balance", "float")
+	if r.Balance == "" {
+		return errParamIsRequired("balance", "string")
 	}
 	return nil
 }

@@ -11,5 +11,6 @@ func initializeRoutes(router *gin.Engine) {
 	{
 		v1.GET("/wallet", handler.ShowWalletHandler)
 		v1.POST("/wallet", handler.CreateWalletHandler)
+		v1.GET("/wallets", handler.ShowWalletsHandler)
 	}
 }

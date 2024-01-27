@@ -1,0 +1,2 @@
+GET http://localhost:9888/api/v1/wallets
+Content-Type: application/json
