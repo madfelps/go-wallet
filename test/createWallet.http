@@ -2,9 +2,8 @@ POST http://localhost:9888/api/v1/wallet
 Content-Type: application/json
 
 {
-    "name": "Débora",
-    "balance": "8000",
-    "aleatorio": "amor da minha vida"
+    "name": "Arnaldo",
+    "balance": "8000"
 }
 
 ###
@@ -13,6 +12,6 @@ POST http://localhost:9888/api/v1/wallet
 Content-Type: application/json
 
 {
-    "name": "Felipinho",
-    "balance": "7000"
+    "name": "Bernaldo",
+    "balance": "5000"
 }

@@ -13,8 +13,8 @@ func ShowWalletsHandler(ctx *gin.Context) {
 	wallets := []schemas.Wallet{}
 	wallet := schemas.Wallet{}
 
-	sql := `SELECT * FROM wallets`
-	rows, err := db.Query(sql)
+	query := `SELECT * FROM wallets`
+	rows, err := db.Query(query)
 	if err != nil {
 		sendError(ctx, http.StatusInternalServerError, "error selecting wallets on database")
 		return
@@ -22,10 +22,13 @@ func ShowWalletsHandler(ctx *gin.Context) {
 	defer rows.Close()
 
 	for rows.Next() {
-		rows.Scan(&wallet.Id, &wallet.Name, &wallet.Balance)
-		fmt.Println(wallet.Name)
-		fmt.Println(wallet.Balance)
-		fmt.Println(wallet.Id)
+		err := rows.Scan(&wallet.Id, &wallet.Name, &wallet.Balance)
+		if err != nil {
+			continue
+		}
+		fmt.Printf("Name: %s", wallet.Name)
+		fmt.Printf("Balance: %s", wallet.Balance)
+		fmt.Printf("Id: %d", wallet.Id)
 		if err != nil {
 			continue
 		}
